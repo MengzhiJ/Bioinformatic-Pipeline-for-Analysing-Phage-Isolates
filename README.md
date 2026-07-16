@@ -36,7 +36,7 @@ $ shovill \
     --assembler skesa
 ```
 ### If a complete genome assembly cannot be obtained using either of the approaches described above, reference-guided consensus sequence generation may be used as an alternative.
-**Software*
+**Software**
 - Bowtie2 (https://github.com/benlangmead/bowtie2) 
 - Samtools (https://github.com/samtools/samtools)  
 - Bcftools (https://github.com/samtools/bcftools)
