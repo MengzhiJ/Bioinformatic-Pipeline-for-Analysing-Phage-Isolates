@@ -35,6 +35,35 @@ $ shovill \
     --cpus 10 \
     --assembler skesa
 ```
+>If a complete genome assembly cannot be obtained using either of the approaches described above, reference-guided consensus sequence generation may be used as an alternative (see Section 3).
+**Software*
+- Bowtie2 (https://github.com/benlangmead/bowtie2) 
+- Samtools (https://github.com/samtools/samtools)  
+- Bcftools (https://github.com/samtools/bcftools)
+```bash
+$ bowtie2-build ref.fa ref
+$ bowtie2 \                                                                                            
+    -x ref \                      
+    -1 ${sample}_R1.clean.fastq.gz \
+    -2 ${sample}_R2.clean.fastq.gz \
+    -S ${sample}.sam \
+    -p 10
+$ samtools view \
+    -bS ${sample}.sam | \
+    samtools sort \
+    -o ${sample}.bam
+$ bcftools mpileup \
+    -Ou \
+    -f ref.fa \
+    ${sample}.bam | \
+    bcftools call \
+    -mv \
+    -Oz \
+    -o variants.vcf.gz
+$ bcftools index variants.vcf.gz
+$ cat ref.fa | \
+    bcftools consensus variants.vcf.gz > reference-guided-consensus.fasta
+```
 ## 2. Genome Quality Evaluation
 **Software:** CheckV (https://bitbucket.org/berkeleylab/checkv/src/master/)
 ```bash
