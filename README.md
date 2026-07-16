@@ -20,7 +20,6 @@ $ spades.py \
     -1 ${sample}_R1.clean.fastq.gz \
     -2 ${sample}_R2.clean.fastq.gz \
     --isolate \
-    --careful \
     -t 10 \
     -o ${sample}_assembly
 ```
