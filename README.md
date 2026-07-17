@@ -9,8 +9,6 @@ $ fastp \
     -I ${sample}_R2.fastq.gz \
     -o ${sample}_R1.clean.fastq.gz \
     -O ${sample}_R2.clean.fastq.gz \
-    -q 20 \
-    -l 36 \
     -w 10
  ```
 ### 1.2 Assembly
